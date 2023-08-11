@@ -1,15 +1,22 @@
 import './App.css';
+import { getParam } from './data/util';
+import { IMAGE_INFO, isValidImage } from './data/info';
+import PandaDeco from './components/PandaDeco';
+
+
 
 function App() {
-  const getParam = (paramName) => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    return urlParams.get(paramName);
-  }
-  let bg = getParam("bg");
-  if (!bg) bg = "01";
-  const bgLink = "/images/bg/" + bg + ".jpg";
-  console.log(bgLink);
+  let share = getParam("share");
+  if (share === null) share = "A02B02C02";
+
+  const acc = share.indexOf("A") !== -1 ? share.substring(share.indexOf("A"), share.indexOf("A") + 3) : null;
+  const bg = share.indexOf("B") !== -1 ? share.substring(share.indexOf("B"), share.indexOf("B") + 3) : null;
+  const character = share.indexOf("C") !== -1 ? share.substring(share.indexOf("C"), share.indexOf("C") + 3) : null
+
+  const bgLink = isValidImage(bg) ? "/images/" + bg + ".jpg" : null;
+  const chLink = isValidImage(character) ? "/images/" + character + ".png" : null;
+  const accLink = isValidImage(acc) ? "/images/" + acc + ".png" : null;
+  console.log(bgLink, chLink, accLink);
 
   return (
     <div className="vh-100 overflow-hidden">
@@ -19,7 +26,8 @@ function App() {
           My Panda
         </div>
 
-        <div id="2" className="d-flex align-items-center justify-content-center position-relative"
+        <PandaDeco className="d-flex align-items-center justify-content-center position-relative" bgLink={bgLink} chLink={chLink} accLink={accLink} /> {/* PandaDeco 컴포넌트 사용 */}
+        {/* <div id="2" className=
           style={{
             width: "100%",
             height: "50%",
@@ -28,20 +36,22 @@ function App() {
             backgroundPosition: 'center'
           }}>
 
-          <img
-            src="/images/bg/03.png"
-            alt="character"
-            className="position-absolute"
-            style={{ width: "100px", height: "100px", left: '70%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 1 }}
-          />
-
-          <img
-            src="/images/bg/04.png"
-            alt="clothes"
-            className="position-absolute"
-            style={{ width: "50%", height: "50%", left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 2 }}
-          />
-        </div>
+          {chLink &&
+            <img
+              src={chLink}
+              alt="character"
+              className="position-absolute"
+              style={{ width: "100%", height: "100%", left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 1 }}
+            />}
+          {accLink &&
+            <img
+              src={accLink}
+              alt="clothes"
+              className="position-absolute"
+              style={{ width: "100%", height: "100%", left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 2 }}
+            />
+          }
+        </div> */}
 
         <div id="3" className="bg-light border" style={{ height: "35%" }}>
           Your content here.
