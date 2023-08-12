@@ -1,9 +1,9 @@
-function PandaDeco({ className, bgLink, chLink, accLink }) {
+function PandaDeco({ className, bgLink, chLink, haLink, eaLink }) {
   return (
     <div className={className}
       style={{
         width: "100%",
-        height: "50%",
+        height: "100%",
         backgroundImage: `url(${bgLink})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
@@ -16,12 +16,20 @@ function PandaDeco({ className, bgLink, chLink, accLink }) {
           className="position-absolute"
           style={{ width: "100%", height: "100%", left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 1 }}
         />}
-      {accLink &&
+      {haLink &&
         <img
-          src={accLink}
+          src={haLink}
           alt="clothes"
           className="position-absolute"
           style={{ width: "100%", height: "100%", left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 2 }}
+        />
+      }
+      {eaLink &&
+        <img
+          src={eaLink}
+          alt="clothes"
+          className="position-absolute"
+          style={{ width: "100%", height: "100%", left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 3 }}
         />
       }
     </div>
