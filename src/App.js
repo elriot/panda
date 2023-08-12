@@ -23,7 +23,8 @@ function App() {
   //   }
   // }, []); // 빈 dependency 배열은 컴포넌트가 처음 마운트될 때만 useEffect 내부의 코드를 실행합니다.
 
-  const links = getLinks(share, true, false);
+  const links = getLinks(share, true, true);
+  console.log(links)
   // console.log(links);
   // console.log(kli)
   // let share = getParam("share");
@@ -35,12 +36,12 @@ function App() {
 
   return (
     <div className="vh-100 overflow-hidden">
-      <div className="container h-100 d-flex flex-column" style={{ maxWidth: "700px" }}>
+      <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
 
         <div id="1" className="fw-bold fs-3 bg-primary text-white text-center d-flex align-items-center justify-content-center" style={{ height: "10%" }}>
           My Panda
         </div>
-        <div style={{ height: "65%" }}>
+        <div id="2" style={{ height: "65%" }}>
           <PandaDeco className="d-flex align-items-center justify-content-center position-relative" isNeck={true} bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink ={links.ea} naLink={links.na} raLink={links.ra}/> {/* PandaDeco 컴포넌트 사용 */}
         </div>
 
@@ -54,6 +55,25 @@ function App() {
       </div>
     </div>
   );
+// return (
+//   <div className="container" style={{ maxWidth: "700px" }}>
+//       <div id="1" className="bg-primary text-white text-center d-flex align-items-center justify-content-center vh-10 vh-lg-5">
+//           My Panda
+//       </div>
+
+//       <div id="2" className="d-flex align-items-center justify-content-center vh-65 vh-lg-75">
+//           <PandaDeco bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink={links.ea} naLink={links.na} raLink={links.ra} />
+//       </div>
+
+//       <div id="3" className="bg-light border vh-25 vh-lg-15">
+//           Your content here.
+//       </div>
+
+//       <div id="4" className="bg-dark text-white text-center d-flex align-items-center justify-content-center vh-5">
+//           &copy; 2023 My Mobile App
+//       </div>
+//   </div>
+// );
 }
 
 export default App;
