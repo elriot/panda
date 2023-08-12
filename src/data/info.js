@@ -1,10 +1,20 @@
 import { getRandomTwoDigitNumber } from "./util";
 
 export const IMAGE_INFO = {
-    bg: { name: "background", count: 2, path: "/images/bg/", extension : ".jpg" },
-    ha: { name: "hair accessory", count: 8, path: "/images/acc/hair/", extension : ".png" },
-    ch: { name: "charactor", count: 3, path: "/images/ch/", extension : ".png" },
-    ea: { name: "eye accessory", count: 6, path: "/images/acc/eye/", extension : ".png" },
+    bg: { name: "background", count: 2, path: "/images/bg/", extension: ".jpg", isRequired:true},
+    ha: { name: "hair accessory", count: 8, path: "/images/acc/hair/", extension: ".png", isRequired:true },
+    ch: {
+        name: "charactor", count: 3, path: "/images/ch/", extension: ".png", isRequired:false, neck:"n_",
+        data: { 
+            "01": { name: "Lebao", birth: "20120728"}, 
+            "02": { name: "Aibao", birth: "20120713"}, 
+            "03": { name: "Fubao", birth: "20200720"},
+            "04": { name: "XiaoXiao", birth: "20210623"},
+        }
+    },
+    ea: { name: "eye accessory", count: 6, path: "/images/acc/eye/", extension: ".png", isRequired:false},
+    ra: { name: "ear accessory", count: 3, path: "/images/acc/ear/", extension: ".png", isRequired:false },
+    na: { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png",isRequired:false },
 }
 const isValidImage = (param) => {
     if (param === null) return false;
@@ -14,39 +24,36 @@ const isValidImage = (param) => {
     return number > 0 && number <= IMAGE_INFO[code]["count"];
 }
 
-export const getLinks = (param) => {
-    param = param.toLowerCase();
-    // console.log(param);
-    let bg = param.indexOf("bg") > -1 ? param.substr(param.indexOf("bg"), 4) : null;
-    let ha = param.indexOf("ha") > -1 ? param.substr(param.indexOf("ha"), 4) : null;
-    let ch = param.indexOf("ch") > -1 ? param.substr(param.indexOf("ch"), 4) : null;
-    let ea = param.indexOf("ea") > -1 ? param.substr(param.indexOf("ea"), 4) : null;
-    // console.log(bg,ha,ch,ea);
-    if (isValidImage(bg))
-        bg = getImageValue("bg", "path") + bg.substr(2,2) + getImageValue("bg", "extension");
-    if (isValidImage(ha))
-        ha = getImageValue("ha", "path") + ha.substr(2,2) + getImageValue("ha", "extension");
-    if (isValidImage(ch))
-        ch = getImageValue("ch", "path") + ch.substr(2,2) + getImageValue("ch", "extension");
-    if (isValidImage(ea))
-        ea = getImageValue("ea", "path") + ea.substr(2,2) + getImageValue("ea", "extension");
 
-    const obj = { bg: bg, ha: ha, ch:ch, ea:ea }
-    console.log(obj);
-    return obj;
+export const getLinks = (param, isEye = true, isNeck = false) => {
+    param = param.toLowerCase();
+    let result = {};
+
+    for (let key in IMAGE_INFO) {
+        if (param.includes(key)) {
+            if(key ==="na" && !isNeck) continue;
+            if(key ==="ea" && !isEye) continue;
+            let value = param.substr(param.indexOf(key), 4);            
+            if (isValidImage(value)) {
+                result[key] = getImageValue(key, "path") + (key==="ch" && isNeck === true? IMAGE_INFO["ch"]["neck"] : "")+value.substr(2, 2) + getImageValue(key, "extension");
+            }
+        }
+    }
+
+    return result;
 }
+
 
 const getImageValue = (code, key) => {
     return IMAGE_INFO[code] !== null ? IMAGE_INFO[code][key] : null;
 }
 export const getRandomImages = () => {
     let result = "";
-    
+
     for (let key in IMAGE_INFO) {
-        const upperKey = key.toUpperCase(); // 대문자로 변환
-        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key].count);
-        result += upperKey + randomNum;
+        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key].count) + (IMAGE_INFO[key].isRequired ? 1 : 0);
+        result += key + randomNum;
     }
-    console.log(result);
+
     return result;
 }

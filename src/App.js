@@ -2,23 +2,36 @@ import './App.css';
 import { getParam } from './data/util';
 import { getLinks, getRandomImages } from './data/info';
 import PandaDeco from './components/PandaDeco';
+import { useEffect, useState } from 'react';
 
 
 function App() {
-  let share = getParam("share");
-  if (share === null) share = "HA02BG02CH02";
-  if(getParam("random") === "1")
-    share = getRandomImages();
+  const initialShare = getParam("share") || getRandomImages();
+  
+  // useState로 share 값을 관리합니다.
+  const [share, setShare] = useState(initialShare);
+  
+  // 1초마다 랜덤 이미지를 갱신합니다.
+  // useEffect(() => {
+  //   if (getParam("random") === "1") {
+  //     const intervalId = setInterval(() => {
+  //       setShare(getRandomImages());
+  //     }, 1000);
 
-  const links = getLinks(share);
-  console.log(links);
-  // const hair_acc = share.indexOf("HA") !== -1 ? share.substring(share.indexOf("HA"), share.indexOf("HA") + 4) : null;
-  // const bg = share.indexOf("BG") !== -1 ? share.substring(share.indexOf("BG"), share.indexOf("BG") + 4) : null;
-  // const character = share.indexOf("CH") !== -1 ? share.substring(share.indexOf("CH"), share.indexOf("CH") + 4) : null
-  // console.log(hair_acc, bg, character);
-  // const bgLink = isValidImage(bg) ? "/images/bg/" + bg + ".jpg" : null;
-  // const chLink = isValidImage(character) ? "/images/ch/" + character + ".png" : null;
-  // const accLink = isValidImage(hair_acc) ? "/images/acc/ha_" + hair_acc + ".png" : null;
+  //     // 컴포넌트가 언마운트될 때 타이머를 정리합니다.
+  //     return () => clearInterval(intervalId);
+  //   }
+  // }, []); // 빈 dependency 배열은 컴포넌트가 처음 마운트될 때만 useEffect 내부의 코드를 실행합니다.
+
+  const links = getLinks(share, true, false);
+  // console.log(links);
+  // console.log(kli)
+  // let share = getParam("share");
+  // if (share === null) share = "HA02BG02CH02";
+  // if(getParam("random") === "1")
+  //   share = getRandomImages();
+
+  // const links = getLinks(share);
 
   return (
     <div className="vh-100 overflow-hidden">
@@ -28,7 +41,7 @@ function App() {
           My Panda
         </div>
         <div style={{ height: "65%" }}>
-          <PandaDeco className="d-flex align-items-center justify-content-center position-relative" bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink ={links.ea} /> {/* PandaDeco 컴포넌트 사용 */}
+          <PandaDeco className="d-flex align-items-center justify-content-center position-relative" isNeck={true} bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink ={links.ea} naLink={links.na} raLink={links.ra}/> {/* PandaDeco 컴포넌트 사용 */}
         </div>
 
         <div id="3" className="bg-light border" style={{ height: "25%" }}>
@@ -41,10 +54,6 @@ function App() {
       </div>
     </div>
   );
-
-
-
-
 }
 
 export default App;
