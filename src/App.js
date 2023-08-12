@@ -1,8 +1,9 @@
 import './App.css';
 import { getParam } from './data/util';
 import { getLinks, getRandomImages } from './data/info';
-import PandaDeco from './components/PandaDeco';
+import PandaRender from './components/PandaRender';
 import { useEffect, useState } from 'react';
+import PandaDeco from './components/PandaDeco';
 
 
 function App() {
@@ -41,12 +42,12 @@ function App() {
         <div id="1" className="fw-bold fs-3 bg-primary text-white text-center d-flex align-items-center justify-content-center" style={{ height: "10%" }}>
           My Panda
         </div>
-        <div id="2" style={{ height: "65%" }}>
-          <PandaDeco className="d-flex align-items-center justify-content-center position-relative" isNeck={true} bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink ={links.ea} naLink={links.na} raLink={links.ra}/> {/* PandaDeco 컴포넌트 사용 */}
+        <div id="2" style={{ height: "60%" }}>
+          <PandaRender className="d-flex align-items-center justify-content-center position-relative" isNeck={true} bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink ={links.ea} naLink={links.na} raLink={links.ra}/> {/* PandaRender 컴포넌트 사용 */}
         </div>
 
-        <div id="3" className="bg-light border" style={{ height: "25%" }}>
-          Your content here.
+        <div id="3" className="bg-light border" style={{ height: "30%" }}>
+          <PandaDeco/>
         </div>
 
         <div id="4" className="bg-dark text-white text-center d-flex align-items-center justify-content-center" style={{ height: "5%" }}>
@@ -62,7 +63,7 @@ function App() {
 //       </div>
 
 //       <div id="2" className="d-flex align-items-center justify-content-center vh-65 vh-lg-75">
-//           <PandaDeco bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink={links.ea} naLink={links.na} raLink={links.ra} />
+//           <PandaRender bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink={links.ea} naLink={links.na} raLink={links.ra} />
 //       </div>
 
 //       <div id="3" className="bg-light border vh-25 vh-lg-15">

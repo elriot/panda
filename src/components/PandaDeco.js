@@ -1,30 +1,54 @@
-function PandaDeco({ className, bgLink, chLink, haLink, eaLink, naLink, raLink, isNeck }) {
-  const baseStyle = {
-    position: 'absolute',
-    left: '50%',
-    bottom: '0%',
-    transform: 'translateX(-50%)',
-    width: '100%'
-  };
+const PandaDeco = () => {
+    const baseStyle = {
+        height: '70px',
+        width: '70px',
+        borderColor: 'rgba(255, 0, 255, 0.1)',
+        borderStyle: 'solid',
+        borderWidth: '0.3em',
+        backgroundColor: 'rgba(255, 0, 255, 0.2)',
+        cursor: 'pointer'
+    };
+    // const height = {};
+    const classes = "rounded vh-25 d-flex align-items-center justify-content-center";
 
-  return (
-    <div className={className}
-      style={{
-        width: "100%",
-        height: "100%",
-        backgroundImage: `url(${bgLink})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        position: 'relative'
-      }}>
-      
-      {chLink && <img src={chLink} alt="character" style={{...baseStyle, zIndex: 1}} />}
-      {haLink && <img src={haLink} alt="hair" style={{...baseStyle, zIndex: 2}} />}
-      {eaLink && <img src={eaLink} alt="ear" style={{...baseStyle, zIndex: 3}} />}
-      {isNeck && naLink && <img src={naLink} alt="neck" style={{...baseStyle, zIndex: 4}} />}
-      {raLink && <img src={raLink} alt="ear" style={{...baseStyle, zIndex: 5}} />}
-    </div>
-  );
+    return (
+        <div>
+            <div className="container">
+                <div className="row m-0 d-flex flex-nowrap overflow-auto"> {/*scroll x : d-flex ~ flow-auto*/}
+                    <div className="col">
+                        <div style={{ ...baseStyle }} className={classes}>
+                            <img src="/images/icons/01.jpg" alt="Icon Description" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div style={{ ...baseStyle }} className={classes}>
+                            <img src="/images/icons/02.jpg" alt="Icon Description" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div style={{ ...baseStyle }} className={classes}>
+                            <img src="/images/icons/03.jpg" alt="Icon Description" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div style={{ ...baseStyle }} className={classes}>
+                            <img src="/images/icons/04.jpg" alt="Icon Description" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div style={{ ...baseStyle }} className={classes}>
+                            <img src="/images/icons/05.jpg" alt="Icon Description" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div style={{ ...baseStyle }} className={classes}>
+                            <img src="/images/icons/06.jpg" alt="Icon Description" style={{ width: "100%", height: "100%" }} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default PandaDeco;
