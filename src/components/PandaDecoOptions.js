@@ -37,7 +37,7 @@ const PandaDecoOptions = ({ category, item, style, className}) => {
                 </div>
                 {/* <div className="container" style={{height:"100%", overflowY: 'auto', backgroundColor:"white"}}> */}
                 <div className="container bg-white" style={{overflowY: 'auto'}}>
-                    <DecoItemsByCategory  category={currentCategory} item={currentItem} containerStyle={getScrollY()} onItemClick={handleClickItem}/>
+                    <DecoItemsByCategory category={currentCategory} item={currentItem} containerStyle={getScrollY()} onItemClick={handleClickItem}/>
                 </div>
             </div>
         </div>
