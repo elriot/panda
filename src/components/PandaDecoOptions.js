@@ -1,5 +1,5 @@
 import { getScrollX } from "../data/getStyles";
-import ItemCategory from "./ItemCategory";
+import DecoCategory from "./DecoCategory";
 import PandaItems from "./PandaItems";
 
 const PandaDecoOptions = () => {
@@ -10,7 +10,7 @@ const PandaDecoOptions = () => {
     return (
         <div>
             <div className="container ">
-                <ItemCategory onClick={handleClickCategory} containerStyle={getScrollX()}/>
+                <DecoCategory onClick={handleClickCategory} containerStyle={getScrollX()}/>
             </div>
             <div className="container">
                 <PandaItems>

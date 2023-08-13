@@ -9,7 +9,7 @@ export const Icon = ({ bgColor, borderColor, url, isSelected, description }) => 
     }, []);
 
     const classes = "rounded vh-25 d-flex align-items-center justify-content-center";
-    const finalStyle = { ...iconStyle, backgroundColor: bgColor, borderColor: borderColor, opacity: isSelected ? '1.0' : '0.3' };
+    const finalStyle = { ...iconStyle, backgroundColor: bgColor, borderColor: borderColor, opacity: isSelected ? '1.0' : '0.4' };
 
     return (<div
         style={finalStyle}
