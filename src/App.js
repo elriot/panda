@@ -11,10 +11,11 @@ import { Footer } from './components/Footer';
 
 
 function App() {
-    const share = getParam("share") || getRandomImages();
+    const share = getParam("share") || getRandomImages();    
     const userDecoInfo = typeof (share) === 'string' ? getDecoInfoByString(share) : share;
     const firstDecoInfo = share ? userDecoInfo : initionDecoInfo();
     // const getDecoInfoBy
+    // console.log(firstDecoInfo);
 
     const [decoInfo, setDecoInfo] = useState(firstDecoInfo);
     const [categoryInfo, setCategoryInfo] = useState([]);

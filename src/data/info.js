@@ -84,9 +84,10 @@ const getImageValue = (code, key) => {
 export const getRandomImages = () => {
     const result = {};
     for (let key in IMAGE_INFO) {
-        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key]["count"], IMAGE_INFO[key]["isRequired"] ? 0 : 1);
+        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key]["count"]);
         result[key] = randomNum;
     }
+    console.log(result);
     return result;
 }
 
@@ -116,16 +117,20 @@ export const initionDecoInfo = () => {
 export const getItemsByCatogory = (category) => {
     if(category === undefined) return null;
     const current = IMAGE_INFO[category];
-    const result = [];
-    let start = current.isRequired === true? 1: 0;
-    let itemCount = current.count + start;
+    const result = [];    
+    let itemCount = current.count;
+    // console.log(itemCount)
+    
     // console.log(start,itemCount);
     const path = current.path, ext = current.extension;
-    for(let i = start; i < itemCount; i++){
+    if(current.isRequired === false)
+        result.push({path:'/images/none.png', itemNo: '00'});
+    
+    for(let i = 1; i <= itemCount; i++){
         let imageNo = i.toString();
         if(i < 10) imageNo = "0" + imageNo;
         result.push({
-            path: i > 0 ? path + imageNo + ext : 'images/none.png',
+            path: path + imageNo + ext,
             itemNo: imageNo,
         });
     }

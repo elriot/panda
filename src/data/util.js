@@ -5,6 +5,6 @@ export const getParam = (paramName) => {
 }
 
 export const getRandomTwoDigitNumber = (max, extra = "0") => {
-    const number = Math.floor(Math.random() * max) + 1 - extra; 
+    const number = Math.floor(Math.random() * max+1) ; 
     return number.toString().padStart(2, '0'); 
 }
