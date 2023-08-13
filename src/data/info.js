@@ -1,31 +1,23 @@
 import { getRandomTwoDigitNumber } from "./util";
 
 export const IMAGE_INFO = {
-    bg: { name: "background", count: 2, path: "/images/bg/", extension: ".jpg", isRequired:true},
-    ha: { name: "hair accessory", count: 8, path: "/images/acc/hair/", extension: ".png", isRequired:true },
+    bg: { name: "background", count: 2, path: "/images/bg/", extension: ".jpg", isRequired:true, iconNo: "01"},
     ch: {
-        name: "charactor", count: 3, path: "/images/ch/", extension: ".png", isRequired:false, neck:"n_",
+        name: "charactor", count: 3, path: "/images/ch/", extension: ".png", isRequired:false, neck:"n_",  iconNo: "02",
         data: { 
             "01": { name: "Lebao", birth: "20120728", photo:"fubao_woni", link:"https://www.instagram.com/fubao_woni/"}, 
             "02": { name: "Aibao", birth: "20120713", photo:"fubao_woni", link:"https://www.instagram.com/fubao_woni/"}, 
             "03": { name: "Fubao", birth: "20200720", photo:"fubao_woni", link:"https://www.instagram.com/fubao_woni/"},
             "04": { name: "XiaoXiao", birth: "20210623", photo:"mainichi panda", link:"https://mainichi-panda.jp/"},
         }
-    },
-    ea: { name: "eye accessory", count: 6, path: "/images/acc/eye/", extension: ".png", isRequired:false},
-    ra: { name: "ear accessory", count: 3, path: "/images/acc/ear/", extension: ".png", isRequired:false },
+    },    
+    ha: { name: "hair accessory", count: 8, path: "/images/acc/hair/", extension: ".png", isRequired:true , iconNo: "03"},
+    ea: { name: "eye accessory", count: 6, path: "/images/acc/eye/", extension: ".png", isRequired:false, iconNo: "04"},
+    ra: { name: "ear accessory", count: 3, path: "/images/acc/ear/", extension: ".png", isRequired:false, iconNo: "05"},
     na: 
-    { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png",isRequired:false },
+    { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png",isRequired:false, iconNo: "06"},
 }
 
-export const CATEGORY_INFO = {
-    "01" : {name: "background", code : "bg"},
-    "02" : {name: "character", code:"ch"},
-    "03" : {name: "hair accessory", code:"ha"},
-    "04" : {name: "eye accessory", code:"ea"},
-    "05" : {name: "ear accessory", code:"ra"},
-    "06" : {name: "ear accessory", code:"na"},
-}
 
 const isValidImage = (param) => {
     if (param === null) return false;
@@ -67,4 +59,13 @@ export const getRandomImages = () => {
     }
 
     return result;
+}
+
+export const getAllCategoryInfo = () => {
+    const result = Object.keys(IMAGE_INFO).map(category => {
+        const { name, iconNo } = IMAGE_INFO[category];
+        return { name, iconNo };
+      });
+    
+      return result;
 }

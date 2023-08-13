@@ -4,6 +4,7 @@ import { getLinks, getRandomImages } from './data/info';
 import PandaRender from './components/PandaRender';
 import { useEffect, useState } from 'react';
 import PandaDeco from './components/PandaDeco';
+import { getScrollX } from './data/bootstrapStyles';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
   // }, []); // 빈 dependency 배열은 컴포넌트가 처음 마운트될 때만 useEffect 내부의 코드를 실행합니다.
 
   const links = getLinks(share, true, true);
-  console.log(links)
+  // console.log(links)
   // console.log(links);
   // console.log(kli)
   // let share = getParam("share");
@@ -34,7 +35,6 @@ function App() {
   //   share = getRandomImages();
 
   // const links = getLinks(share);
-
   return (
     <div className="vh-100 overflow-hidden">
       <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
