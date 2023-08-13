@@ -3,8 +3,9 @@ import { getParam } from './data/util';
 import { getLinks, getRandomImages } from './data/info';
 import PandaRender from './components/PandaRender';
 import { useEffect, useState } from 'react';
-import PandaDeco from './components/PandaDeco';
-import { getScrollX } from './data/bootstrapStyles';
+import PandaDeco from './components/PandaDecoOptions';
+import { getScrollX } from './data/getStyles';
+import PandaDecoOptions from './components/PandaDecoOptions';
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
         </div>
 
         <div id="3" className="bg-light border" style={{ height: "30%" }}>
-          <PandaDeco/>
+          <PandaDecoOptions/>
         </div>
 
         <div id="4" className="bg-dark text-white text-center d-flex align-items-center justify-content-center" style={{ height: "5%" }}>
