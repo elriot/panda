@@ -5,7 +5,6 @@ import { Icon } from './Icon';
 
 const DecoCategory = ({ category, onClick, containerStyle, style} ) => {
     const categoryInfo = getAllCategoryInfo();
-
     const [currentCategory, setCurrentCategory] = useState(category);    
 
     const handleIconClick = (categoryCode) => {

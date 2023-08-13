@@ -132,8 +132,8 @@ export const getItemsByCatogory = (category) => {
     return result;
 }
 
-export const getInitialCategory = () => {
-    return "bg";
+export const getInitialInfo = () => {
+    return {category : "bg", item : "01"};
 }
 
 export const getDecoInfoByString = (param) => {
