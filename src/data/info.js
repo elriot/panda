@@ -94,7 +94,7 @@ export const getItemsByCatogory = (category) => {
     const result = [];
     let start = current.isRequired === true? 1: 0;
     let itemCount = current.count + start;
-    console.log(start,itemCount);
+    // console.log(start,itemCount);
     const path = current.path, ext = current.extension;
     for(let i = start; i < itemCount; i++){
         let imageNo = i.toString();

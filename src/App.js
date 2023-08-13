@@ -2,7 +2,7 @@ import './App.css';
 import { getParam } from './data/util';
 import { getInitialCategory, getLinks, getRandomImages, initionDecoInfo } from './data/info';
 import PandaRender from './components/PandaRender';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PandaDecoOptions from './components/PandaDecoOptions';
 import DecoInfoContext from './context/DecoInfoContext';
 import { getAllCategoryInfo } from './data/info';
@@ -18,13 +18,14 @@ function App() {
 
     useEffect(()=>{
         setCategoryInfo(getAllCategoryInfo());
-    }, []);
+        console.log("hello");
+    }, [decoInfo]);
 
     const links = getLinks(share, true, true);
     const initialCategory = getInitialCategory();
     
     return (
-        <DecoInfoContext.Provider value={decoInfo}>
+        <DecoInfoContext.Provider value={{decoInfo, setDecoInfo}}>
             <div className="vh-100 overflow-hidden">
                 <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
 

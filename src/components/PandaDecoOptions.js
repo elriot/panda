@@ -1,17 +1,31 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getScrollX, getScrollY } from "../data/getStyles";
 import DecoCategory from "./DecoCategory";
 import DecoItemsByCategory from "./DecoItemsByCategory";
 import { getAllCategoryInfo } from "../data/info";
+import DecoInfoContext from "../context/DecoInfoContext";
 
 const PandaDecoOptions = ({ initialCategory }) => {
-    const categoryInfo = getAllCategoryInfo();
     const [currentCategory, setCurrentCategory] = useState(initialCategory);
+    const [currentItem, setCurrentItem] = useState("01");
+    const { decoInfo, setDecoInfo } = useContext(DecoInfoContext);
+    
+    useEffect(() => {
+        console.log("decoInfo has changed:", decoInfo);
+    }, [decoInfo]);
 
     const handleClickCategory = (category) => {
         setCurrentCategory(category);
     }
-    console.log(currentCategory)
+    const handleClickItem = (item) => {
+        // console.log(item);
+        setCurrentItem(item);
+        updateValue(currentCategory, item);
+    }
+    const updateValue = (key, newValue) => {
+        setDecoInfo(prevState => ({ ...prevState, [key]: newValue }));
+    }
+
 
     return (
         
@@ -20,7 +34,7 @@ const PandaDecoOptions = ({ initialCategory }) => {
                 <DecoCategory category={currentCategory} onClick={handleClickCategory} containerStyle={getScrollX()} />
             </div>
             <div className="container" style={{height:"100%", overflowY: 'auto', backgroundColor:"white"}}>
-                <DecoItemsByCategory category={currentCategory} containerStyle={getScrollY()} />
+                <DecoItemsByCategory category={currentCategory} containerStyle={getScrollY()} onItemClick={handleClickItem}/>
             </div>
         </div>
 

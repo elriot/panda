@@ -19,6 +19,7 @@ const DecoCategory = ({ category, onClick, containerStyle} ) => {
                 <div className="col" key={info.iconNo} onClick={() => handleIconClick(info.category)}>
                     {/* {console.log(category)} */}
                     <Icon
+                        key={info.category}
                         isSelected={currentCategory === info.category}
                         iconNo={info.iconNo}
                         description={categoryInfo.name}

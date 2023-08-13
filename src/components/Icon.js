@@ -8,10 +8,10 @@ export const Icon = ({ bgColor, borderColor, url, isSelected, description }) => 
         setIconStyle(getIconStyle());
     }, []);
     
-    if(isSelected){
-        console.log("h2");
-        // setIconStyle({...iconStyle, borderWidth: '0.5em'})
-    }
+    // if(isSelected){
+    //     // console.log("h2");
+    //     // setIconStyle({...iconStyle, borderWidth: '0.5em'})
+    // }
     // const classes = "rounded vh-25 d-flex align-items-center justify-content-center";
     const classes = "rounded m-1";    
     const finalStyle = { ...iconStyle, backgroundColor: bgColor, borderColor: borderColor, opacity: isSelected ? '1.0' : '0.4' };

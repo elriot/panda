@@ -2,19 +2,19 @@ import { useState } from "react";
 import { getItemsByCatogory } from "../data/info";
 import { Icon } from "./Icon";
 
-const DecoItemsByCategory = ({category, containerStyle}) => {    
+const DecoItemsByCategory = ({category, containerStyle, onItemClick}) => {    
     const items = getItemsByCatogory(category);
     const [currentItem, setCurrentItem] = useState("");
-    console.log(containerStyle);
-    const handleItemClick = () => {
-
+    const handleItemClick = (itemNo) => {
+        setCurrentItem(itemNo);
+        onItemClick(itemNo);
     }
     return (
         <div className={`row g-2 p-0 mt-3 row-cols-auto ${containerStyle ? containerStyle : ''}`}>
             {items.map(info => (
-                <div className="col mt-0" key={info.iconNo} onClick={() => handleItemClick(info.itemNo)}>
+                <div key={info.itemNo} className="col mt-0" onClick={() => handleItemClick(info.itemNo)}>
                     {/* {console.log(category)} */}
-                    <Icon
+                    <Icon                        
                         isSelected={currentItem === info.itemNo}
                         iconNo={info.iconNo}
                         description={info.itemNo}
