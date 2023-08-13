@@ -1,4 +1,10 @@
-function PandaRender({ className, bgLink, chLink, haLink, eaLink, naLink, raLink, isNeck, hue = 0 }) {
+import { useContext } from "react";
+import DecoInfoContext from "../context/DecoInfoContext";
+import { getLinksByObject } from "../data/info";
+
+function PandaRender({ style, className, hue = 0 }) {
+  const {decoInfo} = useContext(DecoInfoContext);
+  const links = getLinksByObject(decoInfo);
   const baseStyle = {
     position: 'absolute',
     left: '50%',
@@ -7,22 +13,23 @@ function PandaRender({ className, bgLink, chLink, haLink, eaLink, naLink, raLink
     width: '100%'
   };
   return (
-    <div className={className}
-      style={{
-        width: "100%",
-        height: "100%",
-        backgroundImage: `url(${bgLink})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        position: 'relative'
-      }}>
-      
-      {/*, filter : 'hue-rotate(120deg)'} hue */} 
-      {chLink && <img src={chLink} alt="character" style={{...baseStyle, zIndex: 1 }} />}          
-      {haLink && <img src={haLink} alt="hair" style={{...baseStyle, zIndex: 2}} />}
-      {eaLink && <img src={eaLink} alt="eye" style={{...baseStyle, zIndex: 3}} />}      
-      {raLink && <img src={raLink} alt="ear" style={{...baseStyle, zIndex: 5}} />}
-      {isNeck && naLink && <img src={naLink} alt="neck" style={{...baseStyle, zIndex: 4}} />}
+    <div style={style}>
+      <div className={className}
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundImage: `url(${links.bg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'relative'
+        }}>
+
+        {<img src={links.ch} alt="character" style={{ ...baseStyle, zIndex: 1 }} />}
+        {links.ha && <img src={links.ha} alt="hair" style={{ ...baseStyle, zIndex: 2 }} />}
+        {links.ea && <img src={links.ea} alt="eye" style={{ ...baseStyle, zIndex: 3 }} />}
+        {links.ra && <img src={links.ra} alt="ear" style={{ ...baseStyle, zIndex: 5 }} />}
+        {links.na && <img src={links.na} alt="neck" style={{ ...baseStyle, zIndex: 4 }} />}
+      </div>
     </div>
   );
 }

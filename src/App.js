@@ -1,48 +1,39 @@
 import './App.css';
 import { getParam } from './data/util';
-import { getInitialCategory, getLinks, getRandomImages, initionDecoInfo } from './data/info';
+import { getDecoInfoByString, getInitialCategory, getLinksByObject, getRandomImages, initionDecoInfo } from './data/info';
 import PandaRender from './components/PandaRender';
 import { useEffect, useState } from 'react';
 import PandaDecoOptions from './components/PandaDecoOptions';
 import DecoInfoContext from './context/DecoInfoContext';
 import { getAllCategoryInfo } from './data/info';
+import Header from './components/Header';
+import { Footer } from './components/Footer';
 
 
 function App() {
-    const initialShare = getParam("share") || getRandomImages();
+    const share = getParam("share") || getRandomImages();
+    const userDecoInfo = typeof (share) === 'string' ? getDecoInfoByString(share) : share;
+    const firstDecoInfo = share ? userDecoInfo : initionDecoInfo();
+    // const getDecoInfoBy
 
-    // useState로 share 값을 관리합니다.
-    const [decoInfo, setDecoInfo] = useState(initionDecoInfo());
-    const [share, setShare] = useState(initialShare);
+    const [decoInfo, setDecoInfo] = useState(firstDecoInfo);
     const [categoryInfo, setCategoryInfo] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         setCategoryInfo(getAllCategoryInfo());
-        console.log("hello");
-    }, [decoInfo]);
+    }, []);
 
-    const links = getLinks(share, true, true);
-    const initialCategory = getInitialCategory();
-    
+
+    const initialCategory = getInitialCategory(); //"01"
+
     return (
-        <DecoInfoContext.Provider value={{decoInfo, setDecoInfo}}>
+        <DecoInfoContext.Provider value={{ decoInfo, setDecoInfo }}>
             <div className="vh-100 overflow-hidden">
                 <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
-
-                    <div id="1" className="fw-bold fs-3 bg-primary text-white text-center d-flex align-items-center justify-content-center" style={{ height: "10%" }}>
-                        My Panda
-                    </div>
-                    <div id="2" style={{ height: "60%" }}>
-                        <PandaRender className="d-flex align-items-center justify-content-center position-relative" isNeck={true} bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink={links.ea} naLink={links.na} raLink={links.ra} /> {/* PandaRender 컴포넌트 사용 */}
-                    </div>
-
-                    <div id="3" className="bg-light border" style={{ height: "30%" }}>
-                        <PandaDecoOptions initialCategory={initialCategory}/>
-                    </div>
-
-                    <div id="4" className="bg-dark text-white text-center d-flex align-items-center justify-content-center" style={{ height: "5%" }}>
-                        &copy; 2023 My Mobile App
-                    </div>
+                    <Header style={{  height: "10%" }} />
+                    <PandaRender style={{  height: "55%" }} className="d-flex align-items-center justify-content-center position-relative" /> {/* PandaRender 컴포넌트 사용 */}
+                    <PandaDecoOptions style={{ height: "35%", optionHeight:"10%", itemHeight:"25%" }} initialCategory={initialCategory} className="bg-light border" />
+                    <Footer style={{  height: "5%" }} className="bg-dark text-white text-center d-flex align-items-center justify-content-center" />
                 </div>
             </div>
         </DecoInfoContext.Provider>

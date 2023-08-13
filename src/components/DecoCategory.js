@@ -3,7 +3,7 @@ import { getAllCategoryInfo, getCategoryIconImageByNo } from '../data/info';
 import { Icon } from './Icon';
 
 
-const DecoCategory = ({ category, onClick, containerStyle} ) => {
+const DecoCategory = ({ category, onClick, containerStyle, style} ) => {
     const categoryInfo = getAllCategoryInfo();
 
     const [currentCategory, setCurrentCategory] = useState(category);    
@@ -12,9 +12,9 @@ const DecoCategory = ({ category, onClick, containerStyle} ) => {
         setCurrentCategory(categoryCode);
         onClick(categoryCode);
     }
-
+    
     return (
-        <div className={`row g-2 p-0 ${containerStyle ? containerStyle : ''}`}>
+        <div className={`row g-2 p-0 ${containerStyle ? containerStyle : ''}`} style={style}>
             {categoryInfo.map(info => (
                 <div className="col" key={info.iconNo} onClick={() => handleIconClick(info.category)}>
                     {/* {console.log(category)} */}

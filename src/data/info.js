@@ -24,15 +24,20 @@ const CATEGORY_ICON_INFO = {
 
 
 const isValidImage = (param) => {
+    // console.log("valid", param)
     if (param === null) return false;
     const code = param.substring(0, 2);
     const number = parseInt(param.substring(3, param.length));
     // console.log(code, number);
     return number > 0 && number <= IMAGE_INFO[code]["count"];
 }
+const isValidImageByCategory= (category, imgNo) => {
+    const number = parseInt(imgNo);
+    return number > 0 && number <= IMAGE_INFO[category]["count"];
+}
 
 
-export const getLinks = (param, isEye = true, isNeck = false) => {
+export const getLinksByString = (param, isEye = true, isNeck = false) => {
     param = param.toLowerCase();
     let result = {};
 
@@ -49,26 +54,46 @@ export const getLinks = (param, isEye = true, isNeck = false) => {
 
     return result;
 }
+export const getLinksByObject = (object) => {  
+    const result = {};  
+
+    const isNect = object["na"] && isValidImageByCategory("na", object["na"]) ? "n_" : "";
+    // console.log("isNect", isNect, object["na"]);
+    for (let key in object) {
+        const detail = (key ==="ch") ? isNect + object[key] : object[key];
+        if (IMAGE_INFO[key]) {
+            // console.log("here2222");
+            // if (key === "na" && !isNeck) continue;
+            // if (key === "ea" && !isEye) continue;            
+            if (isValidImageByCategory(key, object[key])) { 
+                const path = getImageValue(key, "path") 
+                + detail
+                + getImageValue(key, "extension");
+                result[key] = path;
+                    
+            }
+        }
+    }
+    return result;
+}
 
 
 const getImageValue = (code, key) => {
     return IMAGE_INFO[code] !== null ? IMAGE_INFO[code][key] : null;
 }
 export const getRandomImages = () => {
-    let result = "";
-
+    const result = {};
     for (let key in IMAGE_INFO) {
-        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key].count) + (IMAGE_INFO[key].isRequired ? 1 : 0);
-        result += key + randomNum;
+        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key]["count"], IMAGE_INFO[key]["isRequired"] ? 0 : 1);
+        result[key] = randomNum;
     }
-
     return result;
 }
 
 export const getAllCategoryInfo = () => {
     const result = Object.keys(IMAGE_INFO).map(category => {
         const { name, iconNo } = IMAGE_INFO[category];
-        return { category, name, iconNo }; // 여기에 category를 추가했습니다.
+        return { category, name, iconNo }; // 여기에 category를 추가
     });
 
     return result;
@@ -109,4 +134,16 @@ export const getItemsByCatogory = (category) => {
 
 export const getInitialCategory = () => {
     return "bg";
+}
+
+export const getDecoInfoByString = (param) => {
+    const keys = Object.keys(IMAGE_INFO);
+    const result = {};
+    for (const el of keys) {
+        const index = param.indexOf(el);
+        if(index !== -1){
+            result[el] = param.substr(index+2, 2);
+        }
+    }
+    return result;
 }

@@ -4,7 +4,7 @@ export const getParam = (paramName) => {
     return urlParams.get(paramName);
 }
 
-export const getRandomTwoDigitNumber = (max) => {
-    const number = Math.floor(Math.random() * max) + 1; 
+export const getRandomTwoDigitNumber = (max, extra = "0") => {
+    const number = Math.floor(Math.random() * max) + 1 - extra; 
     return number.toString().padStart(2, '0'); 
 }

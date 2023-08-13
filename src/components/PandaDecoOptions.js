@@ -5,14 +5,14 @@ import DecoItemsByCategory from "./DecoItemsByCategory";
 import { getAllCategoryInfo } from "../data/info";
 import DecoInfoContext from "../context/DecoInfoContext";
 
-const PandaDecoOptions = ({ initialCategory }) => {
+const PandaDecoOptions = ({ initialCategory, style, className}) => {
     const [currentCategory, setCurrentCategory] = useState(initialCategory);
     const [currentItem, setCurrentItem] = useState("01");
-    const { decoInfo, setDecoInfo } = useContext(DecoInfoContext);
+    const { setDecoInfo } = useContext(DecoInfoContext);
     
-    useEffect(() => {
-        console.log("decoInfo has changed:", decoInfo);
-    }, [decoInfo]);
+    // useEffect(() => {
+    //     // console.log("decoInfo has changed:", decoInfo);
+    // }, []);
 
     const handleClickCategory = (category) => {
         setCurrentCategory(category);
@@ -26,15 +26,15 @@ const PandaDecoOptions = ({ initialCategory }) => {
         setDecoInfo(prevState => ({ ...prevState, [key]: newValue }));
     }
 
-
     return (
-        
-        <div style={{height:"100%" }}>
-            <div className="container" style={{backgroundColor : 'rgba(0,0,0,0.05)'}}>
-                <DecoCategory category={currentCategory} onClick={handleClickCategory} containerStyle={getScrollX()} />
-            </div>
-            <div className="container" style={{height:"100%", overflowY: 'auto', backgroundColor:"white"}}>
-                <DecoItemsByCategory category={currentCategory} containerStyle={getScrollY()} onItemClick={handleClickItem}/>
+        <div style={style} className={className}>
+            <div style={{height:"100%" }}>
+                <div className="container" style={{backgroundColor : 'rgba(0,0,0,0.05)'}}>
+                    <DecoCategory category={currentCategory} onClick={handleClickCategory} containerStyle={getScrollX()} />
+                </div>
+                <div className="container" style={{height:"100%", overflowY: 'auto', backgroundColor:"white"}}>
+                    <DecoItemsByCategory  category={currentCategory} containerStyle={getScrollY()} onItemClick={handleClickItem}/>
+                </div>
             </div>
         </div>
 
