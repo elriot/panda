@@ -1,23 +1,29 @@
-import { getScrollX } from "../data/getStyles";
+import { useState } from "react";
+import { getScrollX, getScrollY } from "../data/getStyles";
 import DecoCategory from "./DecoCategory";
-import PandaItems from "./PandaItems";
+import DecoItemsByCategory from "./DecoItemsByCategory";
+import { getAllCategoryInfo } from "../data/info";
 
-const PandaDecoOptions = () => {
-    const handleClickCategory = (categoryNo) => {
-        // console.log("handleClickCategory", categoryNo);
+const PandaDecoOptions = ({ initialCategory }) => {
+    const categoryInfo = getAllCategoryInfo();
+    const [currentCategory, setCurrentCategory] = useState(initialCategory);
+
+    const handleClickCategory = (category) => {
+        setCurrentCategory(category);
     }
+    console.log(currentCategory)
 
     return (
-        <div>
-            <div className="container ">
-                <DecoCategory onClick={handleClickCategory} containerStyle={getScrollX()}/>
+        
+        <div style={{height:"100%" }}>
+            <div className="container" style={{backgroundColor : 'rgba(0,0,0,0.05)'}}>
+                <DecoCategory category={currentCategory} onClick={handleClickCategory} containerStyle={getScrollX()} />
             </div>
-            <div className="container">
-                <PandaItems>
-
-                </PandaItems>
+            <div className="container" style={{height:"100%", overflowY: 'auto', backgroundColor:"white"}}>
+                <DecoItemsByCategory category={currentCategory} containerStyle={getScrollY()} />
             </div>
         </div>
+
     );
 }
 
