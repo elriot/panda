@@ -24,7 +24,6 @@ const CATEGORY_ICON_INFO = {
 
 
 const isValidImage = (param) => {
-    // console.log("valid", param)
     if (param === null) return false;
     const code = param.substring(0, 2);
     const number = parseInt(param.substring(3, param.length));

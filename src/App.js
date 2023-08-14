@@ -8,6 +8,7 @@ import DecoInfoContext from './context/DecoInfoContext';
 import { getAllCategoryInfo } from './data/info';
 import Header from './components/Header';
 import { Footer } from './components/Footer';
+import { Button } from './components/Button';
 
 
 function App() {
@@ -31,8 +32,8 @@ function App() {
 
     return (
         <DecoInfoContext.Provider value={{ decoInfo, setDecoInfo }}>
-            <div className="vh-100 overflow-hidden">
-                <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
+            <div className="vh-100 overflow-hidden">                
+                <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>                    
                     <Header style={{ height: "10%" }} />
                     <PandaRender
                         style={{ height: "55%" }}
