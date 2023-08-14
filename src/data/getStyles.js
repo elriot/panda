@@ -11,6 +11,9 @@ export const getIconStyle = () => {
         width:  '70px',
         borderStyle: 'solid',
         borderWidth: '0.3em',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        // transform: 'scale(1.5)',
+        // display: 'block', 
+        // margin: 'auto'
     };
 }

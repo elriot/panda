@@ -1,14 +1,18 @@
 import classNames from "classnames";
 
-export const Button = ({style, isRound=true, backgroundColor="red", borderColor="green", text ="", imageUrl =""}) =>{
+export const Button = ({onClick, style, isRound=true, backgroundColor="red", borderColor="green", text ="", imageUrl =""}) =>{
+    const handleClick = () => {
+        onClick();
+        // console.log("here");
+    }
 
     const classes = classNames(
         "border-radius-sm",
         isRound === true ? "rounded" : "",
     )
     const imageStyle ={
-        width:'40px',
-        height:'40px',
+        width:'1.5em',
+        height:'1.5em',
         objectFit:'cover'
     }
     const styles = {
@@ -22,7 +26,7 @@ export const Button = ({style, isRound=true, backgroundColor="red", borderColor=
         justifyContent: 'center'
     };   
 
-    return <div style={styles} className={classes}>
+    return <div style={styles} className={classes} onClick={handleClick}>
         {imageUrl && <img src={imageUrl} alt="Icon" style={imageStyle} />}{text}
     </div>;
 }

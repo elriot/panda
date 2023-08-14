@@ -1,23 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { getScrollX, getScrollY } from "../data/getStyles";
 import DecoCategory from "./DecoCategory";
 import DecoItemsByCategory from "./DecoItemsByCategory";
-import { getAllCategoryInfo } from "../data/info";
-import DecoInfoContext from "../context/DecoInfoContext";
+import { useDecoInfo } from "../context/DecoInfoContext";
+import { useOpenedCategory } from "../context/OpenedCategoryContext";
 
 const PandaDecoOptions = ({ category, item, style, className}) => {
-    const [currentCategory, setCurrentCategory] = useState(category);
-    const [currentItem, setCurrentItem] = useState(item);
-    const { decoInfo, setDecoInfo } = useContext(DecoInfoContext);
-    // console.log(111, category, item);
-    // console.log('2222',decoInfo);
-    // setCurrentItem(decoInfo[currentCategory]);
+    const { decoInfo, setDecoInfo } = useDecoInfo();
+    const { openCategory, setOpenCategory }  = useOpenedCategory();
+    
+    const [currentCategory, setCurrentCategory] = useState(openCategory);    
+    const [currentItem, setCurrentItem] = useState(decoInfo[openCategory]);
 
     const handleClickCategory = (category) => {
+        setOpenCategory(category);
         setCurrentCategory(category);
-        // console.log(category, "CurrentItem:", currentItem, "->", decoInfo[category]);
-        setCurrentItem(decoInfo[category]);        
-        // console.log("here", category);
+        console.log('handleClickCategory', category, decoInfo[category]);
+        setCurrentItem(decoInfo[category]);  
     }
     
     const handleClickItem = (item) => {        
@@ -37,7 +36,7 @@ const PandaDecoOptions = ({ category, item, style, className}) => {
                 </div>
                 {/* <div className="container" style={{height:"100%", overflowY: 'auto', backgroundColor:"white"}}> */}
                 <div className="container bg-white" style={{overflowY: 'auto'}}>
-                    <DecoItemsByCategory category={currentCategory} item={currentItem} containerStyle={getScrollY()} onItemClick={handleClickItem}/>
+                    <DecoItemsByCategory category={currentCategory} item={decoInfo[openCategory]} containerStyle={getScrollY()} onItemClick={handleClickItem}/>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ const DecoItemsByCategory = ({category, containerStyle, onItemClick, item, style
     const handleItemClick = (itemNo) => {
         onItemClick(itemNo);
     }
+    // console.log("decoItemByCategory", category, item);
     // row-cols-auto : for mobile
     // row-cols-sm-6: for pc browser
     return (
@@ -18,9 +19,9 @@ const DecoItemsByCategory = ({category, containerStyle, onItemClick, item, style
                         isSelected={item === info.itemNo}
                         iconNo={info.iconNo}
                         description={info.itemNo}
-                        borderColor='rgba(255, 0, 25, 0.5)'
+                        borderColor='#b8535d'
                         url={info.path}
-                        bgColor='rgba(255,0,255,0.5)'
+                        backgroundColor=''
                     />                       
                 </div>
             ))}

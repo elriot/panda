@@ -3,7 +3,7 @@ import { getRandomTwoDigitNumber } from "./util";
 export const IMAGE_INFO = {
     bg: { name: "background", count: 2, path: "/images/bg/", extension: ".jpg", isRequired: true, iconNo: "01" },
     ch: {
-        name: "charactor", count: 3, path: "/images/ch/", extension: ".png", isRequired: true, neck: "n_", iconNo: "02",
+        name: "charactor", count: 4, path: "/images/ch/", extension: ".png", isRequired: true, neck: "n_", iconNo: "02",
         data: {
             "01": { name: "Lebao", birth: "20120728", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" },
             "02": { name: "Aibao", birth: "20120713", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" },
@@ -12,8 +12,8 @@ export const IMAGE_INFO = {
         }
     },
     ha: { name: "hair accessory", count: 9, path: "/images/acc/hair/", extension: ".png", isRequired: false, iconNo: "03" },
-    ea: { name: "eye accessory", count: 6, path: "/images/acc/eye/", extension: ".png", isRequired: false, iconNo: "04" },
-    ra: { name: "ear accessory", count: 3, path: "/images/acc/ear/", extension: ".png", isRequired: false, iconNo: "05" },
+    ea: { name: "eye accessory", count: 7, path: "/images/acc/eye/", extension: ".png", isRequired: false, iconNo: "04" },
+    ra: { name: "ear accessory", count: 4, path: "/images/acc/ear/", extension: ".png", isRequired: false, iconNo: "05" },
     na:
         { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png", isRequired: false, iconNo: "06" },
 }
@@ -86,7 +86,7 @@ export const getRandomImages = () => {
         const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key]["count"]);
         result[key] = randomNum;
     }
-    console.log(result);
+    // console.log(result);
     return result;
 }
 
@@ -141,6 +141,7 @@ export const getInitialInfo = () => {
 }
 
 export const getDecoInfoByString = (param) => {
+    param = param.toLowerCase();
     const keys = Object.keys(IMAGE_INFO);
     const result = {};
     for (const el of keys) {
