@@ -1,13 +1,13 @@
 import { getRandomTwoDigitNumber } from "./util";
 
 export const IMAGE_INFO = {
-    bg: { name: "background", count: 8, path: "/images/bg/", extension: ".png", isRequired: true, iconNo: "01" },
+    bg: { name: "background", count: 9, path: "/images/bg/", extension: ".png", isRequired: true, iconNo: "01" },
     ch: {
         name: "charactor", count: 5, path: "/images/ch/", extension: ".png", isRequired: true, neck: "n_", iconNo: "02",
     },
-    ha: { name: "hair accessory", count: 9, path: "/images/acc/hair/", extension: ".png", isRequired: false, iconNo: "03" },
+    ha: { name: "hair accessory", count: 13, path: "/images/acc/hair/", extension: ".png", isRequired: false, iconNo: "03" },
     ea: { name: "eye accessory", count: 7, path: "/images/acc/eye/", extension: ".png", isRequired: false, iconNo: "04" },
-    ra: { name: "ear accessory", count: 4, path: "/images/acc/ear/", extension: ".png", isRequired: false, iconNo: "05" },
+    ra: { name: "ear accessory", count: 5, path: "/images/acc/ear/", extension: ".png", isRequired: false, iconNo: "05" },
     na: { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png", isRequired: false, iconNo: "06" },
 }
 
@@ -82,9 +82,10 @@ const getImageValue = (code, key) => {
     return IMAGE_INFO[code] !== null ? IMAGE_INFO[code][key] : null;
 }
 export const getRandomImages = () => {
-    const result = {};
+    const result = {};    
     for (let key in IMAGE_INFO) {
-        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key]["count"]);
+        const extraOne = IMAGE_INFO[key]["isRequired"] === true ? 0 : IMAGE_INFO[key]["count"] / 3;
+        const randomNum = getRandomTwoDigitNumber(IMAGE_INFO[key]["count"]+ extraOne);
         result[key] = randomNum;
     }
     // console.log(result);
@@ -158,4 +159,8 @@ const getPandaPhotoByNo = (no) =>{
 }
 export const getPandaInfoByNo = (no) => {
     return {...PANDA_INFO[no], image : getPandaPhotoByNo(no)};
+}
+
+export const getZoomInfo = () => {
+    return {0:{width:'100%'}, 1:{width:'120%'}, 2:{width:'70%'}, minIdx:0, maxIdx:3};
 }

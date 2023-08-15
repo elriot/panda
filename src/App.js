@@ -1,8 +1,8 @@
 import './App.css';
 import { getParam } from './data/util';
-import { getDecoInfoByString, getInitialInfo, initionDecoInfo } from './data/info';
+import { getDecoInfoByString, getInitialInfo, getZoomInfo, initionDecoInfo } from './data/info';
 import PandaRender from './components/PandaRender';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PandaDecoOptions from './components/PandaDecoOptions';
 import { DecoInfoProvider } from './context/DecoInfoContext';
 import { getAllCategoryInfo } from './data/info';
@@ -11,7 +11,7 @@ import { Footer } from './components/Footer';
 import { OpenedCategoryProvider } from './context/OpenedCategoryContext';
 import { PandaInfoModal } from './components/PandaInfoModal';
 import classNames from 'classnames';
-import { getScrollX, getScrollY } from './data/getStyles';
+import { getScrollY } from './data/getStyles';
 import html2canvas from 'html2canvas';
 
 
@@ -19,12 +19,12 @@ function App() {
     const share = getParam("share");
     const userDecoInfo = typeof (share) === 'string' ? getDecoInfoByString(share) : share;
     const firstDecoInfo = share ? userDecoInfo : initionDecoInfo();
-    // const getDecoInfoBy
-    // console.log(share, userDecoInfo, firstDecoInfo);
 
-    const [decoInfo, setDecoInfo] = useState(firstDecoInfo);
-    const [categoryInfo, setCategoryInfo] = useState([]);
+    const decoInfo = firstDecoInfo;
+    const categoryInfo = getAllCategoryInfo();
     const [showModal, setShowModal] = useState(false);
+    const [zoomIdx, setZoomIdx] = useState(0);
+    const zoomInfo = getZoomInfo();
 
     // category, item for app first visit or refresh or redirect
     const info = getInitialInfo();
@@ -36,11 +36,14 @@ function App() {
     const handleHideModal = () => {
         setShowModal(false);
     }
+    const handleZoomClick = () => {
+        const nextIdx = zoomIdx+1 >= zoomInfo.maxIdx ? zoomInfo.minIdx : zoomIdx+1;
+        setZoomIdx(nextIdx);
+    }
 
-
-    useEffect(() => {
-        setCategoryInfo(getAllCategoryInfo());
-    }, []);
+    // useEffect(() => {
+    //     setCategoryInfo(getAllCategoryInfo());
+    // }, []);
 
     // const captureComponentAsImage = () => {
     //     const el = document.getElementById('render'); 
@@ -62,11 +65,12 @@ function App() {
                             top: '50%', 
                             left: '50%', 
                             transform: 'translate(-50%, -50%)',
-                            maxWidth: '600px'}}> 
+                            maxWidth: '600px', }}> 
                         {showModal && <PandaInfoModal onCloseClick={handleHideModal}/>}
-                        <Header style={{ flex: 0.8 }} onInfoClick={handleInfoClick} />                        
+                        <Header style={{ flex: 0.8 }} onInfoClick={handleInfoClick} onZoomClick={handleZoomClick} zoomIdx={zoomIdx}/>                        
                         <PandaRender id="render"
                             style={{ flex: 6.0 }}
+                            zoom={zoomInfo[zoomIdx].width}
                             className={classNames("d-flex align-items-center justify-content-center position-relative")}
                         />                        
                         {/* <button onClick={captureComponentAsImage}

@@ -16,7 +16,6 @@ const PandaDecoOptions = ({ style, className}) => {
     const handleClickCategory = (category) => {
         setOpenCategory(category);
         setCurrentCategory(category);
-        // console.log('handleClickCategory', category, decoInfo[category]);
         setCurrentItem(decoInfo[category]);  
     }
     
@@ -33,12 +32,9 @@ const PandaDecoOptions = ({ style, className}) => {
     return (
         <div style={finalStyle} className={className} id="render">
             <div style={{height:"100%" }}>
-            {/* <div style={{height:"25vh" }}> */}
                 <div className="container" style={{backgroundColor : 'rgba(0,0,0,0.05)'}}>
-                {/* <div className="container" style={{}}> */}
                     <DecoCategory category={currentCategory} onClick={handleClickCategory} containerStyle={getScrollX()} />
                 </div>
-                {/* <div className="container" style={{height:"100%", overflowY: 'auto', backgroundColor:"white"}}> */}
                 <div className={classNames("container bg-white")} style={{overflowY: 'auto', height:"170px"}} >
                     <DecoItemsByCategory style={{}}category={currentCategory} item={decoInfo[openCategory]} containerStyle={{}} onItemClick={handleClickItem}/>
                 </div>
