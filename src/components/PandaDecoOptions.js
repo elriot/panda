@@ -15,7 +15,7 @@ const PandaDecoOptions = ({ category, item, style, className}) => {
     const handleClickCategory = (category) => {
         setOpenCategory(category);
         setCurrentCategory(category);
-        console.log('handleClickCategory', category, decoInfo[category]);
+        // console.log('handleClickCategory', category, decoInfo[category]);
         setCurrentItem(decoInfo[category]);  
     }
     

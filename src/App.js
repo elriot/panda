@@ -1,15 +1,16 @@
 import './App.css';
 import { getParam } from './data/util';
-import { getDecoInfoByString, getInitialCategory, getInitialInfo, getLinksByObject, getRandomImages, initionDecoInfo } from './data/info';
+import { getDecoInfoByString,  getInitialInfo, getLinksByObject, getRandomImages, initionDecoInfo } from './data/info';
 import PandaRender from './components/PandaRender';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PandaDecoOptions from './components/PandaDecoOptions';
-import DecoInfoContext, { DecoInfoProvider } from './context/DecoInfoContext';
+import { DecoInfoProvider } from './context/DecoInfoContext';
 import { getAllCategoryInfo } from './data/info';
 import Header from './components/Header';
 import { Footer } from './components/Footer';
 import { Button } from './components/Button';
-import OpenedCategoryContext, { OpenedCategoryProvider } from './context/OpenedCategoryContext';
+import { OpenedCategoryProvider } from './context/OpenedCategoryContext';
+import { PandaInfoModal } from './components/PandaInfoModal';
 
 
 function App() {
@@ -17,26 +18,36 @@ function App() {
     const userDecoInfo = typeof (share) === 'string' ? getDecoInfoByString(share) : share;
     const firstDecoInfo = share ? userDecoInfo : initionDecoInfo();
     // const getDecoInfoBy
-    console.log(share, userDecoInfo, firstDecoInfo);
+    // console.log(share, userDecoInfo, firstDecoInfo);
 
     const [decoInfo, setDecoInfo] = useState(firstDecoInfo);
     const [categoryInfo, setCategoryInfo] = useState([]);
-
-    useEffect(() => {
-        setCategoryInfo(getAllCategoryInfo());
-    }, []);
+    const [showModal, setShowModal] = useState(false);
 
     // category, item for app first visit or refresh or redirect
     const info = getInitialInfo();
     const category = info["category"];
     const item = decoInfo[category];
+    const handleInfoClick  = () => {
+        setShowModal(true);
+    }
+    const handleHideModal = () => {
+        setShowModal(false);
+    }
+
+
+    useEffect(() => {
+        setCategoryInfo(getAllCategoryInfo());
+    }, []);
+
 
     return (
         <OpenedCategoryProvider value={"bg"}>
             <DecoInfoProvider value={firstDecoInfo}>
-                <div className="vh-100 overflow-hidden">
+                <div className="vh-100 overflow-hidden">                    
                     <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
-                        <Header style={{ height: "10%" }} />
+                        { showModal && <PandaInfoModal onCloseClick={handleHideModal}/> } 
+                        <Header style={{ height: "10%" }} onInfoClick={handleInfoClick}/>
                         <PandaRender
                             style={{ height: "55%" }}
                             className="d-flex align-items-center justify-content-center position-relative"

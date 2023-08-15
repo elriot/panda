@@ -4,18 +4,18 @@ export const IMAGE_INFO = {
     bg: { name: "background", count: 2, path: "/images/bg/", extension: ".jpg", isRequired: true, iconNo: "01" },
     ch: {
         name: "charactor", count: 4, path: "/images/ch/", extension: ".png", isRequired: true, neck: "n_", iconNo: "02",
-        data: {
-            "01": { name: "Lebao", birth: "20120728", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" },
-            "02": { name: "Aibao", birth: "20120713", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" },
-            "03": { name: "Fubao", birth: "20200720", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" },
-            "04": { name: "XiaoXiao", birth: "20210623", photo: "mainichi panda", link: "https://mainichi-panda.jp/" },
-        }
     },
     ha: { name: "hair accessory", count: 9, path: "/images/acc/hair/", extension: ".png", isRequired: false, iconNo: "03" },
     ea: { name: "eye accessory", count: 7, path: "/images/acc/eye/", extension: ".png", isRequired: false, iconNo: "04" },
     ra: { name: "ear accessory", count: 4, path: "/images/acc/ear/", extension: ".png", isRequired: false, iconNo: "05" },
-    na:
-        { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png", isRequired: false, iconNo: "06" },
+    na: { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png", isRequired: false, iconNo: "06" },
+}
+
+const PANDA_INFO = {
+    "01": { chineseName: "乐宝", name: "Lebao", gender:"Male", birth: "20120728", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/", color: "lightblue"},
+    "02": { chineseName: "爱宝", name: "Aibao", gender:"Femail" ,birth: "20120713", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/", color: "#ffc6c6" },
+    "03": { chineseName: "福宝", name: "Fubao", gender: "Femail", birth: "20120720", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" , color:"lightgoldenrodyellow"},
+    "04": { chineseName: "暁暁", name: "XiaoXiao", gender:"Male", birth: "20210623", address:"Ueno Zoo, Japan", photo: "mainichi panda", link: "https://mainichi-panda.jp/", color:"lightseagreen" },
 }
 
 const CATEGORY_ICON_INFO = {
@@ -151,4 +151,10 @@ export const getDecoInfoByString = (param) => {
         }
     }
     return result;
+}
+const getPandaPhotoByNo = (no) =>{
+    return IMAGE_INFO["ch"]["path"] + no + IMAGE_INFO["ch"]["extension"];
+}
+export const getPandaInfoByNo = (no) => {
+    return {...PANDA_INFO[no], image : getPandaPhotoByNo(no)};
 }
