@@ -10,11 +10,10 @@ const DecoItemsByCategory = ({category, containerStyle, onItemClick, item, style
     // row-cols-auto : for mobile
     // row-cols-sm-6: for pc browser
     return (
-        <div className={` row g-2 p-0 mt-3 row-cols-auto row-cols-sm-6 ${containerStyle ? containerStyle : ''}  flex-fill`}
-            style={{...style,  height: '18vh', overflowY: 'auto' }}>
+        <div className={` row g-2 p-0 row-cols-auto row-cols-sm-6 ${containerStyle ? containerStyle : ''}  flex-fill`}
+        style={{ ...style, overflowY: 'auto', display: 'flex' }}>        
             {items.map(info => (
-                <div key={info.itemNo} className="col mt-0" onClick={() => handleItemClick(info.itemNo)}>
-                    {/* {console.log(category)} */}
+                <div  style={{...style,}} key={info.itemNo} className="" onClick={() => handleItemClick(info.itemNo)}>
                     <Icon                        
                         isSelected={item === info.itemNo}
                         iconNo={info.iconNo}

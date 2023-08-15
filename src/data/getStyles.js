@@ -3,12 +3,12 @@ export const getScrollX = () => {
     return "flex-nowrap overflow-auto";
 }
 export const getScrollY = () => {
-    return "overflow-y-auto";
+    return "flex-wrap overflow-auto";
 }
 export const getIconStyle = () => {
     return {
-        height: '70px',
-        width:  '70px',
+        height: '4em',
+        width:  '4em',
         borderStyle: 'solid',
         borderWidth: '0.3em',
         cursor: 'pointer',

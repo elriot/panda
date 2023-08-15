@@ -12,8 +12,9 @@ function PandaRender({ style, className, hue = 0 }) {
     transform: 'translateX(-50%)',
     width: '100%'
   };
-  return (
-    <div style={style}>
+  
+  return (    
+    <div style={style} id="render">
       <div className={className}
         style={{
           width: "100%",

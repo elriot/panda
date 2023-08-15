@@ -6,7 +6,7 @@ import { Button } from "./Button";
 export const PandaInfoModal = ({ modalRef, onCloseClick }) => {
     const { decoInfo } = useDecoInfo();
     const pandaInfo = getPandaInfoByNo(decoInfo["ch"]);
-    console.log(pandaInfo);
+    // console.log(pandaInfo);
 
     const handleClickCloseButton = () => {
         onCloseClick();

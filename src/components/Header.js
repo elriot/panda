@@ -1,7 +1,6 @@
 import { Button } from "./Button";
 import { useDecoInfo } from "../context/DecoInfoContext";
 import { getRandomImages } from "../data/info";
-import { useState } from "react";
 import { getPublicURL } from "../data/util";
 
 const Header = ({ style, onInfoClick }) => {
