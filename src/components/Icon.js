@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getIconStyle } from "../data/getStyles";
-import { addAlphaToHex } from "../data/util";
+import { addAlphaToHex, getPublicURL } from "../data/util";
 
 export const Icon = ({ backgroundColor, borderColor, url, isSelected, description }) => {
     const [iconStyle, setIconStyle] = useState({});
@@ -30,7 +30,7 @@ export const Icon = ({ backgroundColor, borderColor, url, isSelected, descriptio
         style={finalStyle}
         className={classes}>
         <img
-            src={url}
+            src={getPublicURL(url)}
             alt={description}
             style={{ width: "100%", height: "100%" }}
         />

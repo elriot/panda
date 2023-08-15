@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { getScrollX, getScrollY } from "../data/getStyles";
 import DecoCategory from "./DecoCategory";
 import DecoItemsByCategory from "./DecoItemsByCategory";
 import { useDecoInfo } from "../context/DecoInfoContext";
 import { useOpenedCategory } from "../context/OpenedCategoryContext";
 
-const PandaDecoOptions = ({ category, item, style, className}) => {
+const PandaDecoOptions = ({ style, className}) => {
     const { decoInfo, setDecoInfo } = useDecoInfo();
     const { openCategory, setOpenCategory }  = useOpenedCategory();
     

@@ -2,6 +2,7 @@ import { Button } from "./Button";
 import { useDecoInfo } from "../context/DecoInfoContext";
 import { getRandomImages } from "../data/info";
 import { useState } from "react";
+import { getPublicURL } from "../data/util";
 
 const Header = ({ style, onInfoClick }) => {
     const { setDecoInfo } = useDecoInfo();
@@ -17,7 +18,7 @@ const Header = ({ style, onInfoClick }) => {
     const handleInfoClick = () => {
         onInfoClick();
     }
-
+    
     return (
         <div style={{ ...style, position: 'relative' }} className={"fw-bold fs-3 text-white text-center d-flex align-items-center justify-content-center"}>
             <div>My Panda</div>
@@ -25,14 +26,14 @@ const Header = ({ style, onInfoClick }) => {
                 <Button
                     backgroundColor="#fff107"
                     borderColor="#df7676"
-                    imageUrl={randomUrl}
+                    imageUrl={getPublicURL(randomUrl)}
                     onClick={handleRandomClick}
                 />
                 <Button
                     backgroundColor="#df7676"
                     borderColor="#676767"
                     style={{ marginLeft: '0.1em' }}
-                    imageUrl={infoUrl}
+                    imageUrl={getPublicURL(infoUrl)}
                     onClick={handleInfoClick}
                 />                
             </div>                    

@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { getPublicURL } from "../data/util";
 
 export const Button = ({ onClick, style, isRound = true, backgroundColor = "red", borderColor = "green", text = "", imageUrl = "" }) => {
     const handleClick = () => {
@@ -25,9 +26,9 @@ export const Button = ({ onClick, style, isRound = true, backgroundColor = "red"
         alignItems: 'center',
         justifyContent: 'center'
     };
-
+    
     return <div style={styles} className={classes} onClick={handleClick}>
-        {imageUrl && <img src={imageUrl} alt="Icon" style={imageStyle} />}
+        {imageUrl && <img src={getPublicURL(imageUrl)} alt="Icon" style={imageStyle} />}
         {text &&
             <p style={{alignItems: 'center', justifyContent: 'center'}}>
                 {text}

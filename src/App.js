@@ -1,14 +1,13 @@
 import './App.css';
 import { getParam } from './data/util';
-import { getDecoInfoByString,  getInitialInfo, getLinksByObject, getRandomImages, initionDecoInfo } from './data/info';
+import { getDecoInfoByString,  getInitialInfo, initionDecoInfo } from './data/info';
 import PandaRender from './components/PandaRender';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PandaDecoOptions from './components/PandaDecoOptions';
 import { DecoInfoProvider } from './context/DecoInfoContext';
 import { getAllCategoryInfo } from './data/info';
 import Header from './components/Header';
 import { Footer } from './components/Footer';
-import { Button } from './components/Button';
 import { OpenedCategoryProvider } from './context/OpenedCategoryContext';
 import { PandaInfoModal } from './components/PandaInfoModal';
 
@@ -51,7 +50,7 @@ function App() {
                         <PandaRender
                             style={{ height: "55%" }}
                             className="d-flex align-items-center justify-content-center position-relative"
-                        /> {/* PandaRender 컴포넌트 사용 */}
+                        />
                         <PandaDecoOptions
                             style={{ height: "35%", optionHeight: "10%", itemHeight: "25%" }}
                             category={category}
