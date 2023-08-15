@@ -30,7 +30,7 @@ export const Button = ({ onClick, style, isRound = true, backgroundColor = "red"
     return <div style={styles} className={classes} onClick={handleClick}>
         {imageUrl && <img src={getPublicURL(imageUrl)} alt="Icon" style={imageStyle} />}
         {text &&
-            <p style={{alignItems: 'center', justifyContent: 'center'}}>
+            <p style={{alignItems: 'center', justifyContent: 'center'}} className="m-0">
                 {text}
             </p>}
     </div>;

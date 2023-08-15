@@ -11,7 +11,7 @@ const DecoItemsByCategory = ({category, containerStyle, onItemClick, item, style
     // row-cols-sm-6: for pc browser
     return (
         <div className={` row g-2 p-0 mt-3 row-cols-auto row-cols-sm-6 ${containerStyle ? containerStyle : ''}  flex-fill`}
-            style={{...style,  maxHeight: '22vh', overflowY: 'auto' }}>
+            style={{...style,  height: '18vh', overflowY: 'auto' }}>
             {items.map(info => (
                 <div key={info.itemNo} className="col mt-0" onClick={() => handleItemClick(info.itemNo)}>
                     {/* {console.log(category)} */}

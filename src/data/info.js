@@ -13,8 +13,8 @@ export const IMAGE_INFO = {
 
 const PANDA_INFO = {
     "01": { chineseName: "乐宝", name: "Lebao", gender:"Male", birth: "20120728", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/", color: "lightblue"},
-    "02": { chineseName: "爱宝", name: "Aibao", gender:"Femail" ,birth: "20120713", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/", color: "#ffc6c6" },
-    "03": { chineseName: "福宝", name: "Fubao", gender: "Femail", birth: "20120720", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" , color:"lightgoldenrodyellow"},
+    "02": { chineseName: "爱宝", name: "Aibao", gender:"Female" ,birth: "20120713", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/", color: "#ffc6c6" },
+    "03": { chineseName: "福宝", name: "Fubao", gender: "Female", birth: "20120720", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" , color:"lightgoldenrodyellow"},
     "04": { chineseName: "暁暁", name: "XiaoXiao", gender:"Male", birth: "20210623", address:"Ueno Zoo, Japan", photo: "mainichi panda", link: "https://mainichi-panda.jp/", color:"lightseagreen" },
 }
 

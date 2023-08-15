@@ -1,6 +1,6 @@
 import './App.css';
 import { getParam } from './data/util';
-import { getDecoInfoByString,  getInitialInfo, initionDecoInfo } from './data/info';
+import { getDecoInfoByString, getInitialInfo, initionDecoInfo } from './data/info';
 import PandaRender from './components/PandaRender';
 import { useEffect, useState } from 'react';
 import PandaDecoOptions from './components/PandaDecoOptions';
@@ -10,6 +10,8 @@ import Header from './components/Header';
 import { Footer } from './components/Footer';
 import { OpenedCategoryProvider } from './context/OpenedCategoryContext';
 import { PandaInfoModal } from './components/PandaInfoModal';
+import classNames from 'classnames';
+import { getScrollY } from './data/getStyles';
 
 
 function App() {
@@ -27,7 +29,7 @@ function App() {
     const info = getInitialInfo();
     const category = info["category"];
     const item = decoInfo[category];
-    const handleInfoClick  = () => {
+    const handleInfoClick = () => {
         setShowModal(true);
     }
     const handleHideModal = () => {
@@ -43,22 +45,22 @@ function App() {
     return (
         <OpenedCategoryProvider value={"bg"}>
             <DecoInfoProvider value={firstDecoInfo}>
-                <div className="vh-100 overflow-hidden">                    
-                    <div className="container h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
-                        { showModal && <PandaInfoModal onCloseClick={handleHideModal}/> } 
-                        <Header style={{ height: "10%" }} onInfoClick={handleInfoClick}/>
+                <div className={classNames("vh-100 overflow-hidden", getScrollY())}>
+                    <div className="container-flex h-100 d-flex flex-column" style={{ maxWidth: "600px" }}>
+                        {showModal && <PandaInfoModal onCloseClick={handleHideModal} />}
+                        <Header style={{ flex: 0.8 }} onInfoClick={handleInfoClick} />
                         <PandaRender
-                            style={{ height: "55%" }}
+                            style={{ flex: 6.3 }}
                             className="d-flex align-items-center justify-content-center position-relative"
                         />
                         <PandaDecoOptions
-                            style={{ height: "35%", optionHeight: "10%", itemHeight: "25%" }}
+                            style={{ flex: 2.5 }}
                             category={category}
                             item={item}
                             className="bg-white border"
                         />
                         <Footer
-                            style={{ height: "5%" }}
+                            style={{ flex: 0.4 }}
                             className="bg-dark text-white text-center d-flex align-items-center justify-content-center"
                         />
                     </div>
