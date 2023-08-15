@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/panda/static/css/main.5d2ddeb4.css",
-    "main.js": "/panda/static/js/main.15d3eebd.js",
+    "main.js": "/panda/static/js/main.46dad875.js",
     "index.html": "/panda/index.html",
     "main.5d2ddeb4.css.map": "/panda/static/css/main.5d2ddeb4.css.map",
-    "main.15d3eebd.js.map": "/panda/static/js/main.15d3eebd.js.map"
+    "main.46dad875.js.map": "/panda/static/js/main.46dad875.js.map"
   },
   "entrypoints": [
     "static/css/main.5d2ddeb4.css",
-    "static/js/main.15d3eebd.js"
+    "static/js/main.46dad875.js"
   ]
 }
