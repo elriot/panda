@@ -14,7 +14,7 @@ export const PandaInfoModal = ({ modalRef, onCloseClick }) => {
     
     return (
         <div className="modal-container">
-            <div className="modal-content" ref={modalRef}>
+            <div className="modal-content">
                 <Button
                     style={{ position: 'absolute', top: '0.5em', right: '0.5em' }}
                     imageUrl={getPublicURL("/images/close.png")}

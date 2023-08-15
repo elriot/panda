@@ -57,8 +57,13 @@ function App() {
         <OpenedCategoryProvider value={"bg"}>
             <DecoInfoProvider value={firstDecoInfo}>
                 <div className={classNames("vh-100 overflow-hidden")}>
-                    <div className={classNames("container-flex h-100 d-flex flex-column")} style={{maxWidth: "600px"}}> 
-                        {showModal && <PandaInfoModal onCloseClick={handleHideModal} />}
+                    <div className={classNames("container-flex h-100 d-flex flex-column")} 
+                        style={{ position: 'relative', 
+                            top: '50%', 
+                            left: '50%', 
+                            transform: 'translate(-50%, -50%)',
+                            maxWidth: '600px'}}> 
+                        {showModal && <PandaInfoModal onCloseClick={handleHideModal}/>}
                         <Header style={{ flex: 0.8 }} onInfoClick={handleInfoClick} />                        
                         <PandaRender id="render"
                             style={{ flex: 6.0 }}
