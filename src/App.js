@@ -11,7 +11,7 @@ import { Footer } from './components/Footer';
 import { OpenedCategoryProvider } from './context/OpenedCategoryContext';
 import { PandaInfoModal } from './components/PandaInfoModal';
 import classNames from 'classnames';
-import { getScrollY } from './data/getStyles';
+import { getScrollX, getScrollY } from './data/getStyles';
 import html2canvas from 'html2canvas';
 
 
@@ -42,36 +42,38 @@ function App() {
         setCategoryInfo(getAllCategoryInfo());
     }, []);
 
-    const captureComponentAsImage = () => {
-        const componentToCapture = document.getElementById('render'); 
-
-        html2canvas(componentToCapture).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            
-            const link = document.createElement('a');
-            link.href = imgData;
-            link.download = 'captured-image.png';
-            link.click();
-        });
-    }
+    // const captureComponentAsImage = () => {
+    //     const el = document.getElementById('render'); 
+    //     html2canvas(el,{}).then(canvas => {
+    //         const imgData = canvas.toDataURL('image/png');
+    //         const link = document.createElement('a');
+    //         link.href = imgData;
+    //         link.download = 'captured-image.png';
+    //         link.click();
+    //     });
+    // }
 
     return (
         <OpenedCategoryProvider value={"bg"}>
             <DecoInfoProvider value={firstDecoInfo}>
-                <div className={classNames("vh-100 overflow-hidden", getScrollY())}>
-                    <div className="container-flex h-100 d-flex flex-column" style={{maxWidth: "600px"}}> 
+                <div className={classNames("vh-100 overflow-hidden")}>
+                    <div className={classNames("container-flex h-100 d-flex flex-column")} style={{maxWidth: "600px"}}> 
                         {showModal && <PandaInfoModal onCloseClick={handleHideModal} />}
                         <Header style={{ flex: 0.8 }} onInfoClick={handleInfoClick} />                        
                         <PandaRender id="render"
                             style={{ flex: 6.0 }}
-                            className="d-flex align-items-center justify-content-center position-relative"
+                            className={classNames("d-flex align-items-center justify-content-center position-relative")}
                         />                        
-                        <button onClick={captureComponentAsImage} style={{ border:'none', zIndex:2, flex:0.4}} className='fw-bold fs-4'>Save Image</button>
+                        {/* <button onClick={captureComponentAsImage}
+                            style={{ border: 'none', zIndex: 2, flex: 0.4 }}
+                            className='fw-bold fs-4'>
+                                Save Image
+                        </button> */}
                         <PandaDecoOptions
                             style={{ flex: 2.5 }}
                             category={category}
                             item={item}
-                            className="bg-white border align-items-center justify-content-center position-relative"
+                            className={classNames("bg-white border align-items-center justify-content-center position-relative", getScrollY())}
                             // className="bg-white border"
                         />                        
                         <Footer

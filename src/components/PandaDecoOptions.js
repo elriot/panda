@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getScrollX, getScrollY } from "../data/getStyles";
+import { getScrollX } from "../data/getStyles";
 import DecoCategory from "./DecoCategory";
 import DecoItemsByCategory from "./DecoItemsByCategory";
 import { useDecoInfo } from "../context/DecoInfoContext";
@@ -29,9 +29,9 @@ const PandaDecoOptions = ({ style, className}) => {
     }
     // const finalStyle = {...style, justifyContent: 'center', alignItems: 'center'};
     const finalStyle = style;
-    console.log(style);
+    // console.log(style);
     return (
-        <div style={finalStyle} className={className}>
+        <div style={finalStyle} className={className} id="render">
             <div style={{height:"100%" }}>
             {/* <div style={{height:"25vh" }}> */}
                 <div className="container" style={{backgroundColor : 'rgba(0,0,0,0.05)'}}>

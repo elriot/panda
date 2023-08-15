@@ -1,9 +1,9 @@
 import { getRandomTwoDigitNumber } from "./util";
 
 export const IMAGE_INFO = {
-    bg: { name: "background", count: 2, path: "/images/bg/", extension: ".jpg", isRequired: true, iconNo: "01" },
+    bg: { name: "background", count: 8, path: "/images/bg/", extension: ".png", isRequired: true, iconNo: "01" },
     ch: {
-        name: "charactor", count: 4, path: "/images/ch/", extension: ".png", isRequired: true, neck: "n_", iconNo: "02",
+        name: "charactor", count: 5, path: "/images/ch/", extension: ".png", isRequired: true, neck: "n_", iconNo: "02",
     },
     ha: { name: "hair accessory", count: 9, path: "/images/acc/hair/", extension: ".png", isRequired: false, iconNo: "03" },
     ea: { name: "eye accessory", count: 7, path: "/images/acc/eye/", extension: ".png", isRequired: false, iconNo: "04" },
@@ -16,6 +16,7 @@ const PANDA_INFO = {
     "02": { chineseName: "爱宝", name: "Aibao", gender:"Female" ,birth: "20120713", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/", color: "#ffc6c6" },
     "03": { chineseName: "福宝", name: "Fubao", gender: "Female", birth: "20120720", address:"Everland, South Korea", photo: "fubao_woni", link: "https://www.instagram.com/fubao_woni/" , color:"lightgoldenrodyellow"},
     "04": { chineseName: "暁暁", name: "XiaoXiao", gender:"Male", birth: "20210623", address:"Ueno Zoo, Japan", photo: "mainichi panda", link: "https://mainichi-panda.jp/", color:"lightseagreen" },
+    "05": { chineseName: "蕾蕾", name: "LeiLei", gender:"Female", birth: "20210623", address:"Ueno Zoo, Japan", photo: "mainichi panda", link: "https://mainichi-panda.jp/", color:"#ffb691" },
 }
 
 const CATEGORY_ICON_INFO = {

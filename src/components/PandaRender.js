@@ -1,3 +1,4 @@
+// import html2canvas from "html2canvas";
 import { useDecoInfo } from "../context/DecoInfoContext";
 import { getLinksByObject } from "../data/info";
 import { getPublicURL } from "../data/util";
@@ -12,10 +13,25 @@ function PandaRender({ style, className, hue = 0 }) {
     transform: 'translateX(-50%)',
     width: '100%'
   };
+
+//   const captureComponentAsImage = () => {
+//     const componentToCapture = document.getElementById('render'); 
+
+//     html2canvas(componentToCapture).then(canvas => {
+//         const imgData = canvas.toDataURL('image/png');
+        
+//         const link = document.createElement('a');
+//         link.href = imgData;
+//         link.download = 'captured-image.png';
+//         link.click();
+//     });
+// }
+
   
   return (    
-    <div style={style} id="render">
-      <div className={className}
+    <div style={style} >
+      {/* <button onClick={captureComponentAsImage} style={{ position:"absolute", border:'none', zIndex:2, flex:0.4}} className='fw-bold fs-4'>Save Image</button> */}
+      <div id="render" className={className}
         style={{
           width: "100%",
           height: "100%",
@@ -32,6 +48,7 @@ function PandaRender({ style, className, hue = 0 }) {
         {links.na && <img src={getPublicURL(links.na)} alt="neck" style={{ ...baseStyle, zIndex: 4 }} />}
       </div>
     </div>
+    
   );
 }
 
