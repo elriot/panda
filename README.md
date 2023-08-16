@@ -2,8 +2,7 @@
 
 ## Background
 
-With the birth of three naturally bred giant pandas in Korea, they gained significant popularity, drawing fans from various age groups. 
-This project was initiated to create a web app that allows everyone, from children to seniors, to customize their own panda.
+This project was initiated to create a web app that allows everyone, from children to seniors who loves panda, to customize their own panda.
 
 
 ## Development Tools
@@ -21,12 +20,11 @@ This project was initiated to create a web app that allows everyone, from childr
 2. **Zoom Feature**: Adjust the size of the panda.
 3. **Random Button**: Randomly set all options.
 4. **Reset Button**: Reset all options to their initial state.
+5. **Image Save Feature**: Save your customized panda as an image file.
+
 
 ## Links
 
 - [GitHub Repository](https://github.com/elriot/panda)
 - [Live Webpage](https://elriot.github.io/panda/)
 
----
-
-Please replace "github_url" and "webpage_url" with the actual URLs.
