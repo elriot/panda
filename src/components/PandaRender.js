@@ -1,10 +1,9 @@
-// import html2canvas from "html2canvas";
 import { useDecoInfo } from "../context/DecoInfoContext";
 import { getLinksByObject } from "../data/info";
 import { getPublicURL } from "../data/util";
 
 function PandaRender({ style, className, zoom, hue = 0 }) {
-  const {decoInfo} = useDecoInfo()
+  const { decoInfo } = useDecoInfo()
   const links = getLinksByObject(decoInfo);
   const baseStyle = {
     position: 'absolute',
@@ -14,8 +13,8 @@ function PandaRender({ style, className, zoom, hue = 0 }) {
     width: zoom
   };
 
-  return (    
-    <div style={style} >
+  return (
+    <div style={style}>
       <div id="render" className={className}
         style={{
           width: "100%",
@@ -33,7 +32,7 @@ function PandaRender({ style, className, zoom, hue = 0 }) {
         {links.na && <img src={getPublicURL(links.na)} alt="neck" style={{ ...baseStyle, zIndex: 4 }} />}
       </div>
     </div>
-    
+
   );
 }
 

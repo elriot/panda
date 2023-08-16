@@ -3,14 +3,15 @@ import { useDecoInfo } from "../context/DecoInfoContext";
 import { getRandomImages, initionDecoInfo } from "../data/info";
 import { getPublicURL } from "../data/util";
 
-const Header = ({ style, onInfoClick, onZoomClick, zoomIdx = 1 }) => {
+const Header = ({ style, onInfoClick, onZoomClick, zoomIdx }) => {
     const { setDecoInfo } = useDecoInfo();
 
     style = { ...style, backgroundColor: '#57b9d8', zIndex: 999 };
     const randomUrl = '/images/btn/random.png';
     const infoUrl = '/images/btn/info.png';
     const resetUrl = '/images/btn/reset.png';
-    const zoomUrl = '/images/btn/zoom'+zoomIdx+'.png';
+    const zoomUrl = `/images/btn/zoom${zoomIdx !== undefined ? + zoomIdx : ""}.png`;
+    // console.log(zoomUrl, zoomIdx);
     
     const handleRandomClick = () => {
         const random = getRandomImages();  

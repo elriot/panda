@@ -1,7 +1,12 @@
+import { getPublicURL } from "../data/util";
+
 export const Footer = ({style, className}) => {
     return (
         <div style={style} className={className}>
-            &copy; 2023 My Panda - Made by @bodrderless_panda
+            Enjoy! Created by @borderless_panda &nbsp; 
+            <a href="https://www.instagram.com/borderless_panda/" target="blank">
+                <img src={getPublicURL("/images/instagram.png")} alt="instagra"/>
+            </a>
         </div>
     );
 

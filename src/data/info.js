@@ -1,11 +1,11 @@
 import { getRandomTwoDigitNumber } from "./util";
 
 export const IMAGE_INFO = {
-    bg: { name: "background", count: 9, path: "/images/bg/", extension: ".png", isRequired: true, iconNo: "01" },
+    bg: { name: "background", count: 10, path: "/images/bg/", extension: ".png", isRequired: true, iconNo: "01" },
     ch: {
         name: "charactor", count: 5, path: "/images/ch/", extension: ".png", isRequired: true, neck: "n_", iconNo: "02",
     },
-    ha: { name: "hair accessory", count: 13, path: "/images/acc/hair/", extension: ".png", isRequired: false, iconNo: "03" },
+    ha: { name: "hair accessory", count: 14, path: "/images/acc/hair/", extension: ".png", isRequired: false, iconNo: "03" },
     ea: { name: "eye accessory", count: 7, path: "/images/acc/eye/", extension: ".png", isRequired: false, iconNo: "04" },
     ra: { name: "ear accessory", count: 5, path: "/images/acc/ear/", extension: ".png", isRequired: false, iconNo: "05" },
     na: { name: "neck accessory", count: 3, path: "/images/acc/neck/", extension: ".png", isRequired: false, iconNo: "06" },
@@ -162,5 +162,5 @@ export const getPandaInfoByNo = (no) => {
 }
 
 export const getZoomInfo = () => {
-    return {0:{width:'100%'}, 1:{width:'120%'}, 2:{width:'70%'}, minIdx:0, maxIdx:3};
+    return {0:{width:'100%'}, 1:{width:'120%'}, 2:{width:'50%'}, 3:{width:'75%'}, minIdx:0, maxIdx:4, startIdx:3};
 }
