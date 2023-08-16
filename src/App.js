@@ -70,7 +70,7 @@ function App() {
                             className={classNames("d-flex align-items-center justify-content-center position-relative")}
                         />                        
                         <button onClick={handleDownloadClick}
-                            style={{ border: 'none', zIndex: 2, flex: 0.4 }}
+                            style={{ border: 'none', zIndex: 2, flex: 0.4, background: '#5f9ea0' }}
                             className='fw-bold fs-4'>
                                 Save Image
                         </button>
