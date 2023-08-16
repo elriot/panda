@@ -1,59 +1,95 @@
 import './App.css';
 import { getParam } from './data/util';
-import { getLinks, getRandomImages } from './data/info';
-import PandaDeco from './components/PandaDeco';
-import { useEffect, useState } from 'react';
-
+import { getDecoInfoByString, getInitialInfo, getZoomInfo, initionDecoInfo } from './data/info';
+import PandaRender from './components/PandaRender';
+import { useRef, useState } from 'react';
+import PandaDecoOptions from './components/PandaDecoOptions';
+import { DecoInfoProvider } from './context/DecoInfoContext';
+import { getAllCategoryInfo } from './data/info';
+import Header from './components/Header';
+import { Footer } from './components/Footer';
+import { OpenedCategoryProvider } from './context/OpenedCategoryContext';
+import { PandaInfoModal } from './components/PandaInfoModal';
+import classNames from 'classnames';
+import html2canvas from 'html2canvas';
 
 function App() {
-  const initialShare = getParam("share") || getRandomImages();
-  
-  // useState로 share 값을 관리합니다.
-  const [share, setShare] = useState(initialShare);
-  
-  // 1초마다 랜덤 이미지를 갱신합니다.
-  // useEffect(() => {
-  //   if (getParam("random") === "1") {
-  //     const intervalId = setInterval(() => {
-  //       setShare(getRandomImages());
-  //     }, 1000);
+    const share = getParam("share");
+    const userDecoInfo = typeof (share) === 'string' ? getDecoInfoByString(share) : share;
+    const firstDecoInfo = share ? userDecoInfo : initionDecoInfo();
 
-  //     // 컴포넌트가 언마운트될 때 타이머를 정리합니다.
-  //     return () => clearInterval(intervalId);
-  //   }
-  // }, []); // 빈 dependency 배열은 컴포넌트가 처음 마운트될 때만 useEffect 내부의 코드를 실행합니다.
+    const decoInfo = firstDecoInfo;
+    const categoryInfo = getAllCategoryInfo();
+    const [showModal, setShowModal] = useState(false);  
+    const zoomInfo = getZoomInfo();
+    const [zoomIdx, setZoomIdx] = useState(zoomInfo.startIdx);
+    
 
-  const links = getLinks(share, true, false);
-  // console.log(links);
-  // console.log(kli)
-  // let share = getParam("share");
-  // if (share === null) share = "HA02BG02CH02";
-  // if(getParam("random") === "1")
-  //   share = getRandomImages();
+    // category, item for app first visit or refresh or redirect
+    const info = getInitialInfo();
+    const category = info["category"];
+    const item = decoInfo[category];
+    const handleInfoClick = () => {
+        setShowModal(true);
+    }
+    const handleHideModal = () => {
+        setShowModal(false);
+    }
+    const handleZoomClick = () => {
+        const nextIdx = zoomIdx+1 >= zoomInfo.maxIdx ? zoomInfo.minIdx : zoomIdx+1;
+        setZoomIdx(nextIdx);
+    }
 
-  // const links = getLinks(share);
+    const handleDownloadClick = () => {
+        const el = document.getElementById('render'); 
+        html2canvas(el,{}).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = imgData;
+            link.download = 'captured-image.png';
+            link.click();
+        });
+    }
 
-  return (
-    <div className="vh-100 overflow-hidden">
-      <div className="container h-100 d-flex flex-column" style={{ maxWidth: "700px" }}>
 
-        <div id="1" className="fw-bold fs-3 bg-primary text-white text-center d-flex align-items-center justify-content-center" style={{ height: "10%" }}>
-          My Panda
-        </div>
-        <div style={{ height: "65%" }}>
-          <PandaDeco className="d-flex align-items-center justify-content-center position-relative" isNeck={true} bgLink={links.bg} chLink={links.ch} haLink={links.ha} eaLink ={links.ea} naLink={links.na} raLink={links.ra}/> {/* PandaDeco 컴포넌트 사용 */}
-        </div>
-
-        <div id="3" className="bg-light border" style={{ height: "25%" }}>
-          Your content here.
-        </div>
-
-        <div id="4" className="bg-dark text-white text-center d-flex align-items-center justify-content-center" style={{ height: "5%" }}>
-          &copy; 2023 My Mobile App
-        </div>
-      </div>
-    </div>
-  );
+    return (
+        <OpenedCategoryProvider value={"bg"}>
+            <DecoInfoProvider value={firstDecoInfo}>
+                <div className={classNames("vh-100")}>
+                    <div className={classNames("container-flex h-100 d-flex flex-column")} 
+                        style={{ position: 'relative', 
+                            top: '50%', 
+                            left: '50%', 
+                            transform: 'translate(-50%, -50%)',
+                            maxWidth: '600px'}}> 
+                        {showModal && <PandaInfoModal onCloseClick={handleHideModal}/>}
+                        <Header style={{ flex: 0.8 }} onInfoClick={handleInfoClick} onZoomClick={handleZoomClick}/>                        
+                        <PandaRender
+                            style={{ flex: 6.0 }}
+                            zoom={zoomInfo[zoomIdx].width}
+                            className={classNames("d-flex align-items-center justify-content-center position-relative")}
+                        />                        
+                        <button onClick={handleDownloadClick}
+                            style={{ border: 'none', zIndex: 2, flex: 0.4 }}
+                            className='fw-bold fs-4'>
+                                Save Image
+                        </button>
+                        <PandaDecoOptions
+                            style={{ flex: 2.9 }}
+                            category={category}
+                            item={item}
+                            className={classNames("bg-white border align-items-center justify-content-center position-relative",/* getScrollY()*/)}
+                            // className="bg-white border"
+                        />                        
+                        <Footer
+                            style={{ flex: 0.3 }}
+                            className="bg-dark text-white text-center d-flex align-items-center justify-content-center"
+                        />
+                    </div>
+                </div>
+            </DecoInfoProvider>
+        </OpenedCategoryProvider>
+    );
 }
 
 export default App;
